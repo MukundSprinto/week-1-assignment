@@ -34,8 +34,22 @@ const BookResolver = {
                 if (filter.id) {
                     whereClause.id = filter.id;
                 }
+                if (filter.published_date_gt) {
+                    whereClause.published_date = { ...whereClause.published_date, [Op.gte]: new Date(filter.published_date_gt) };
+                }
+                if (filter.published_date_lt) {
+                    whereClause.published_date = { ...whereClause.published_date, [Op.lte]: new Date(filter.published_date_lt) };
+                }
+                if (filter.published_date_range) {
+                    whereClause.published_date = { 
+                        [Op.between]: [
+                            new Date(filter.published_date_range.start), 
+                            new Date(filter.published_date_range.end)
+                        ] 
+                    };
+                }
             }
-            
+
             const offset = (page - 1) * pageSize;
             
             const { rows, count } = await Book.findAndCountAll({

@@ -33,6 +33,14 @@ const authorTypeDefs = `#graphql
   input AuthorFilter {
     name: String
     id: Int
+    born_date_gt: String
+    born_date_lt: String
+    born_date_range: DateRange
+  }
+
+  input DateRange {
+    start: String!
+    end: String!
   }
 `;
 

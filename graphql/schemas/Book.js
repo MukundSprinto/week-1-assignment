@@ -28,6 +28,14 @@ const bookTypeDefs = `#graphql
     title: String
     author_id: Int
     id: Int
+    published_date_gt: String
+    published_date_lt: String
+    published_date_range: DateRange
+  }
+
+  input DateRange {
+    start: String!
+    end: String!
   }
 
   type Mutation {

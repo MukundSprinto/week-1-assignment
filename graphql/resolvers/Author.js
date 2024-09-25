@@ -24,10 +24,24 @@ const AuthorResolver = {
             
             if (filter) {
                 if (filter.name) {
-                    whereClause.name = { [Op.iLike]: `%${filter.name}%` };
+                  whereClause.name = { [Op.iLike]: `%${filter.name}%` };
                 }
                 if (filter.id) {
-                    whereClause.id = filter.id;
+                  whereClause.id = filter.id;
+                }
+                if (filter.born_date_gt) {
+                  whereClause.born_date = { ...whereClause.born_date, [Op.gte]: new Date(filter.born_date_gt) };
+                }
+                if (filter.born_date_lt) {
+                  whereClause.born_date = { ...whereClause.born_date, [Op.lte]: new Date(filter.born_date_lt) };
+                }
+                if (filter.born_date_range) {
+                  whereClause.born_date = { 
+                    [Op.between]: [
+                      new Date(filter.born_date_range.start), 
+                      new Date(filter.born_date_range.end)
+                    ] 
+                  };
                 }
             }
 
@@ -51,7 +65,6 @@ const AuthorResolver = {
     Mutation: {
         createAuthor: async (_, { name, biography, born_date, profile_image_uri }) => {
             born_date = new Date(born_date);
-            console.log(born_date);
             return await Author.create({ name, biography, born_date, profile_image_uri });
         },
         updateAuthor: async (_, { id, name, biography, born_date, profile_image_uri }) => {
