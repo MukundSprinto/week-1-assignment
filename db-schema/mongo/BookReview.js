@@ -2,11 +2,15 @@ import { mongoose } from '../../db/mongoose.js'
 
 
 const bookReviewSchema = new mongoose.Schema({
-  bookId: {
+  book_id: {
     type: Number,
     required: true
   },
   review: {
+    type: String,
+    required: true
+  },
+  user_name: {
     type: String,
     required: true
   },

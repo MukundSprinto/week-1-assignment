@@ -44,7 +44,6 @@ const Book = sequelize.define(
   },
 );
 
-// console.log(Book === sequelize.models.Book);
 await Book.sync();
 
 export { Book };

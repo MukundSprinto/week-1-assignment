@@ -2,7 +2,7 @@ import { mongoose } from '../../db/mongoose.js'
 
 
 const authorDetailSchema = new mongoose.Schema({
-    authorId: {
+    author_id: {
       type: Number,
       required: true
     },
@@ -14,6 +14,9 @@ const authorDetailSchema = new mongoose.Schema({
         type: String
     },
     email: {
+        type: String
+    },
+    website: {
         type: String
     },
 }, {
