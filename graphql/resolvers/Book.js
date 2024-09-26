@@ -68,17 +68,17 @@ const BookResolver = {
         }
     },
     Mutation: {
-        createBook: async (_, { title, published_date, author_id, conver_image_uri }) => {
+        createBook: async (_, { title, published_date, author_id, cover_image_uri }) => {
             published_date = new Date(published_date);
             console.log(published_date);
-            return await Book.create({ title, published_date, author_id, conver_image_uri });
+            return await Book.create({ title, published_date, author_id, cover_image_uri });
         },
-        updateBook: async (_, { id, title, published_date, author_id, conver_image_uri }) => {
+        updateBook: async (_, { id, title, published_date, author_id, cover_image_uri }) => {
             const updateData = {};
             if (title) updateData.title = title;
             if (published_date) updateData.published_date = published_date;
             if (author_id) updateData.author_id = author_id;
-            if (conver_image_uri) updateData.conver_image_uri = conver_image_uri;
+            if (cover_image_uri) updateData.cover_image_uri = cover_image_uri;
             return await Book.update(updateData, { where: { id } });
         },
         deleteBook: async (_, { id }) => {

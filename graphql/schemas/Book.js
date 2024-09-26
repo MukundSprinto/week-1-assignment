@@ -4,7 +4,7 @@ const bookTypeDefs = `#graphql
     title: String
     published_date: String
     author_id: Int
-    conver_image_uri: String
+    cover_image_uri: String
     author: Author
     created_at: String
     updated_at: String
@@ -39,8 +39,8 @@ const bookTypeDefs = `#graphql
   }
 
   type Mutation {
-    createBook(title: String!, published_date: String!, author_id: Int!, conver_image_uri: String!): Book!
-    updateBook(id: Int!, title: String, published_date: String, author_id: Int, conver_image_uri: String): Book!
+    createBook(title: String!, published_date: String!, author_id: Int!, cover_image_uri: String!): Book!
+    updateBook(id: Int!, title: String, published_date: String, author_id: Int, cover_image_uri: String): Book!
     deleteBook(id: Int!): Book!
   }
 `;

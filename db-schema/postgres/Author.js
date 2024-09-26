@@ -15,7 +15,7 @@ const Author = sequelize.define(
       allowNull: false,
     },
     biography: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     born_date: {
       type: DataTypes.DATE,

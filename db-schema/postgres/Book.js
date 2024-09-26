@@ -25,7 +25,7 @@ const Book = sequelize.define(
       },
       allowNull: false,
     },
-    conver_image_uri: {
+    cover_image_uri: {
       type: DataTypes.STRING,
     },
     created_at: {
