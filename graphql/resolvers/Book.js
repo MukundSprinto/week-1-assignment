@@ -1,4 +1,5 @@
 import { Book } from '../../db-schema/postgres/Book.js';
+import { BookReview } from '../../db-schema/mongo/BookReview.js';
 import { Op } from 'sequelize';
 
 const batchBooks = async (authorIds) => {
@@ -87,7 +88,9 @@ const BookResolver = {
             }
         },
         deleteBook: async (_, { id }) => {
-            return await Book.destroy({ where: { id } });
+            await Book.destroy({ where: { id } });
+            await BookReview.deleteMany({ book_id: id });
+            return true;
         }
     }
 }

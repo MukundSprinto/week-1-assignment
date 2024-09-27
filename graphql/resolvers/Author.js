@@ -1,5 +1,6 @@
 import { Op } from 'sequelize';
 import { Author } from '../../db-schema/postgres/Author.js';
+import { AuthorDetail } from '../../db-schema/mongo/AuthorDetail.js';
 
 const batchAuthors = async (authorIds) => {
     const authors = await Author.findAll({
@@ -82,7 +83,9 @@ const AuthorResolver = {
           }
         },
         deleteAuthor: async (_, { id }) => {
-            return await Author.destroy({ where: { id } });
+            await Author.destroy({ where: { id } });
+            await AuthorDetail.deleteMany({ author_id: id });
+            return true;
         }
     }
 }
