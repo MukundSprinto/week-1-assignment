@@ -74,7 +74,12 @@ const AuthorResolver = {
             if (born_date) updateData.born_date = born_date;
             if (profile_image_uri) updateData.profile_image_uri = profile_image_uri;
             
-            return await Author.update(updateData, { where: { id } });
+            const res = await Author.update(updateData, { where: { id }, returning: true, plain: true  });
+            if (Array.isArray(res) && res.length > 1) {
+              return res[1].dataValues;
+          } else {
+              return null;
+          }
         },
         deleteAuthor: async (_, { id }) => {
             return await Author.destroy({ where: { id } });

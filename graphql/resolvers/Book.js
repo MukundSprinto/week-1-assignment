@@ -79,7 +79,12 @@ const BookResolver = {
             if (published_date) updateData.published_date = published_date;
             if (author_id) updateData.author_id = author_id;
             if (cover_image_uri) updateData.cover_image_uri = cover_image_uri;
-            return await Book.update(updateData, { where: { id } });
+            const res =  await Book.update(updateData, { where: { id }, returning: true, plain: true });
+            if (Array.isArray(res) && res.length > 1) {
+                return res[1].dataValues;
+            } else {
+                return null;
+            }
         },
         deleteBook: async (_, { id }) => {
             return await Book.destroy({ where: { id } });
