@@ -14,6 +14,10 @@ const Book = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
     published_date: {
       type: DataTypes.DATE,
     },
@@ -44,6 +48,6 @@ const Book = sequelize.define(
   },
 );
 
-await Book.sync();
+await Book.sync({ alter: true });
 
 export { Book };
