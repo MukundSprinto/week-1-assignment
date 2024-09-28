@@ -84,7 +84,7 @@ const AuthorResolver = {
         },
         deleteAuthor: async (_, { id }) => {
             await Author.destroy({ where: { id } });
-            await AuthorDetail.deleteMany({ author_id: id });
+            await AuthorDetail.deleteOne({ author_id: id });
             return true;
         }
     }
