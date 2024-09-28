@@ -48,6 +48,6 @@ const Book = sequelize.define(
   },
 );
 
-await Book.sync({ alter: true });
+await Book.sync();
 
 export { Book };
