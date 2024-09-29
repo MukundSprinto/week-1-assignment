@@ -8,7 +8,6 @@ const authorDetailSchema = new mongoose.Schema({
     },
     phone: {
       type: Number,
-      required: true
     },
     address: {
         type: String
